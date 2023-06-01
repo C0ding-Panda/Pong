@@ -1,31 +1,123 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.canvas-container {
+  width: 100%;
+  max-width: 600px; /* set a maximum width to prevent the canvas from getting too large */
+  margin: 0 auto; /* center the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 #canvas {
-    border: 1px solid black;
-  }
-  #total-touches, #touches-since-loss {
+    border: 5px solid black;
+}
+#total-touches, #touches-since-loss, #high-score {
 font-weight: bold;
 font-size: 20px;
 margin-left: 10px;
 }
-button {
-background-color: #4CAF50;
-border: none;
-color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-margin: 4px 2px;
-cursor: pointer;
-border-radius: 10px;
+#mobile-buttons-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 40%;  
+}
+.mobile-button {  
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #99ffb6;
+    color: white;
+    cursor: pointer;
+    height: 7vw;
+    width: 9vw;
+}
+#paddle-buttons-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 15%;
+}
+#left-btn {
+  float: left;
+}
+
+/* Style the right button */
+#right-btn {
+  float: right;
+}
+.height-button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #5ee284;
 }
 
 button:hover {
-background-color: #3e8e41;
+  background-color: #3e8e41;
 }
 
 button:active {
-background-color: #3e8e41;
-transform: translateY(2px);
+  transform: translateY(2px);
+  background-color: #3e8e41;
 }
-
+#audio-buttons-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 30%;
+}
+.autoplay-btn {
+  background-color: #379151; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+footer {
+  margin-top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+}
+@media (max-width: 700px) {
+  .canvas-container {
+    max-width: 500px;
+    border-width: 14px;
+  }
+  #mobile-buttons-container {
+    padding-left: 10%;
+    height: 3vw;
+    width: 5vw;
+  }
+  #paddle-buttons-container {
+    padding-left: 5%;
+  }
+  #audio-buttons-container {
+    padding-left: 15%;
+  }
+  footer {
+    margin-top: 20%;
+  }
+}

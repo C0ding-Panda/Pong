@@ -6,14 +6,32 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-
-  <canvas id="canvas" width="600" height="400"></canvas>
-  <div>Actual touches/Berührungen im Moment: <span id="total-touches">0</span></div>
-  <div>Touches overall/Berührungen gesamt: <span id="touches-since-loss">0</span></div>
-  <button id="increase-btn" onclick="addPaddleHeight()">Increase Paddle Height/größerer Schläger</button>
-  <button id="reset-btn" onclick="resetPaddleHeight()">Reset Paddle Height/normaler Schläger</button>
-<button id="decrease-btn" onclick="subtractPaddleHeight()">Decrease Paddle Height/kleinerer Schläger</button>
-
+  <div class="canvas-container">
+    <button id="left-btn" class="mobile-button">up / hoch</button>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <button id="right-btn" class="mobile-button">down / runter</button>
+  </div>
+    <div>Actual touches/Berührungen im Moment: <span id="total-touches">0</span></div>
+    <div>Touches overall/Berührungen gesamt: <span id="touches-since-loss">0</span></div>
+    <div>High score: <span id="high-score">0</span></div>
+  <div id="mobile-buttons-container">
+    
+    
+  </div>
+  <div id="paddle-buttons-container">
+    <button id="increase-btn" class="height-button" onclick="addPaddleHeight()">Increase Paddle Height/größerer Schläger</button>
+    <button id="reset-btn" class="height-button" onclick="resetPaddleHeight()">Reset Paddle Height/normaler Schläger</button>
+    <button id="decrease-btn" class="height-button" onclick="subtractPaddleHeight()">Decrease Paddle Height/kleinerer  Schläger</button>
+  </div>
+  <div id="audio-buttons-container">
+    <button onclick="requestAutoplayPermission()" class="autoplay-btn">activate Audio/Audio aktivieren</button>
+    <button onclick="deactivateAudio()" class="autoplay-btn">deactivate Audio/Audio deaktivieren</button>
+  </div>
+    <audio src="./pong_sound.mp3" id="pong-sound" disabled="false"></audio>
+  <audio src="./ding_sound.mp3" id="ding-sound" disabled="false"></audio>
 <script src="script.js"></script>
 </body>
+<footer>
+  audio-dateien: freesound.org/InspectorJ, freesound.org/volivieri
+</footer>
 </html>
