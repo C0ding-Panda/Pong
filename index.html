@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Pong Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="canvas-container">
+  <div id="orientation-message" style="display: none;">
+    <p>Please rotate your phone to landscape mode.</p>
+  </div>
+  <div id="top-btns">
+    <button id="fullscreen-button">Fullscreen</button>
+    <button id="start-pause-button">Start/Stop</button>
+    <button id="view-to-focus">View to focus</button>
+  </div>
+    <div class="canvas-container">
     <button id="left-btn" class="mobile-button">up / hoch</button>
     <canvas id="canvas" width="600" height="400"></canvas>
     <button id="right-btn" class="mobile-button">down / runter</button>
   </div>
+  <div id="counters">
     <div>Actual touches/Berührungen im Moment: <span id="total-touches">0</span></div>
     <div>Touches overall/Berührungen gesamt: <span id="touches-since-loss">0</span></div>
     <div>High score: <span id="high-score">0</span></div>
-  <div id="mobile-buttons-container">
-    
-    
   </div>
   <div id="paddle-buttons-container">
     <button id="increase-btn" class="height-button" onclick="addPaddleHeight()">Increase Paddle Height/größerer Schläger</button>
@@ -24,7 +31,7 @@
     <button id="decrease-btn" class="height-button" onclick="subtractPaddleHeight()">Decrease Paddle Height/kleinerer  Schläger</button>
   </div>
   <div id="audio-buttons-container">
-    <button onclick="requestAutoplayPermission()" class="autoplay-btn">activate Audio/Audio aktivieren</button>
+    <button onclick="activateAudio()" class="autoplay-btn">activate Audio/Audio aktivieren</button>
     <button onclick="deactivateAudio()" class="autoplay-btn">deactivate Audio/Audio deaktivieren</button>
   </div>
     <audio src="./pong_sound.mp3" id="pong-sound" disabled="false"></audio>
