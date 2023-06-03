@@ -222,9 +222,7 @@ function startStop() {
   } else {
     started = true;
     ballY = Math.random() * (canvas.height - 2 * ballRadius - 1) + ballRadius;
-    ballX = Math.random() * (canvas.width - ballRadius - paddleWidth * 2 - 2) + paddleWidth + ballRadius;
-    ballDX = 3;
-    ballDY = -3;
+    ballX = Math.random() * (canvas.width / 2 - ballRadius - paddleWidth * 2 - 2) + canvas.width / 2 + ballRadius;
     requestAnimationFrame(draw);
   }
 }    
