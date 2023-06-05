@@ -90,79 +90,70 @@ function subtractPaddleHeight() {
 function resetPaddleHeight() {
   paddleHeight = 110;
 }
-
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
-    drawPaddle(0, playerPaddleY,);
-  
-    if (ballY + ballDY < ballRadius || ballY + ballDY > canvas.height - ballRadius) { 
-      ballDY = -ballDY; 
-      if (allowSound == true) {
-        ding_sound.currentTime = 0;
-        ding_sound.pause();
-        ding_sound.play();  
-      }
-      function getRandomColor() {
+function getRandomColor() {
   const letters = "0123456789ABCDEF";
   let color = "#";
   for (let i = 0; i < 6; i++) {
-  color += letters[Math.floor(Math.random() * 16)];
+    color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}
+
+let ballSpeed = 2;
+let ballAngle = 3;
+let xSpeed = 4;
+let ySpeed = 4;
+
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBall();
+  drawPaddle(0, playerPaddleY);
+
+  if (ballY + ySpeed < ballRadius || ballY + ySpeed > canvas.height - ballRadius) {//top or bottom wall collision
+    ySpeed *= -1;
+    ballColor = getRandomColor();
   }
-  
-      ballColor = getRandomColor();
-    }
-  
-    if (ballX + ballDX < ballRadius + paddleWidth) { // paddle collision
-      if (ballY + ballDY > playerPaddleY && ballY + ballDY < playerPaddleY + paddleHeight) {
-        ballDX = -ballDX;
-        ballDY += 0.5;
-        totalTouches++;
-        touchesSinceLoss++;
-        if (totalTouches > highScore) {
-          highScore = totalTouches;
-        }
-        ballDX *= 1.07; // Increase ball speed
-        ballDY *= 1.07;
-        if (allowSound == true) {
-          pong_sound.play();
-        }
-      ballColor = '#000';
-      } else {
-        alert("You lost!/Du hast verloren! Total touches/Berührungen: " + totalTouches);
-        ballDX = 3;
-        ballDY = -3;
-        ballY = Math.random() * (canvas.height - 2 * ballRadius - 1) + ballRadius;
-        ballX = Math.random() * (canvas.width - ballRadius - paddleWidth - 1) + paddleWidth + ballRadius;
-        totalTouches = 0;
+
+  if (ballX + xSpeed < ballRadius + paddleWidth) { // paddle collision
+    if (ballY + ySpeed > playerPaddleY && ballY + ySpeed < playerPaddleY + paddleHeight) {
+      ySpeed, xSpeed *= 1.04;
+      xSpeed *= -1;
+      totalTouches++;
+      touchesSinceLoss++;
+      if (totalTouches > highScore) {
+        highScore = totalTouches;
       }
-    } else if (ballX + ballDX > canvas.width - ballRadius) { // Right wall collision
-      ballDX = -ballDX;
       if (allowSound == true) {
-        ding_sound.currentTime = 0;
-        ding_sound.pause();
-        ding_sound.play();
+        pong_sound.play();
       }
-      function getRandomColor() {
-      const letters = "0123456789ABCDEF";
-      let color = "#";
-      for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-      } 
-  
-      ballColor = getRandomColor();
+      ballColor = '#000';
+    } else {
+      alert("You lost!/Du hast verloren! Total touches/Berührungen: " + totalTouches);
+      ballAngle = Math.PI * (Math.random() - 0.5);
+      ballY = Math.random() * (canvas.height - 2 * ballRadius - 1) + ballRadius;
+      ballX = Math.random() * (canvas.width - ballRadius - paddleWidth - 1) + paddleWidth + ballRadius;
+      totalTouches = 0;
     }
-  
-    ballX += ballDX;
-    ballY += ballDY;
+  } else if (ballX + xSpeed > canvas.width - ballRadius) { // right wall collision
+    xSpeed *= -1;
+    if (allowSound == true) {
+      ding_sound.currentTime = 0;
+      ding_sound.pause();
+      ding_sound.play();
+    }
+    
+    ballColor = getRandomColor();
+  }
+
+  ballX += xSpeed;
+  ballY += ySpeed;
+
   document.getElementById("total-touches").textContent = totalTouches.toString();
   document.getElementById("touches-since-loss").textContent = touchesSinceLoss.toString();
   document.getElementById("high-score").textContent = highScore.toString();
-  }
+}
+
   let moveUp = false;
   let moveDown = false;
   
